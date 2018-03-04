@@ -10,7 +10,7 @@ function reset() {
   chessboard = new Set();
   for(i = 0; i < 9; i++) {
     chessboard.add(i);
-    place(i, "z");
+    place(i, "");
   }
   playerO = new Set();
   playerX = new Set();
@@ -29,8 +29,7 @@ function setState(status) {
 // "o" for human player, "x" for bot, and "z" for clear the slot
 function place(id, what) {
   var cellId = "CELL" + id;
-  document.getElementById(cellId).innerHTML
-    = "<IMG SRC=" + what + ".svg></IMG>";
+  document.getElementById(cellId).innerText = what;
 }
 
 // check if a player is winning, will return true if won.
@@ -55,7 +54,7 @@ function check(player) {
 function move(id) {
   playerX.add(id);
   chessboard.delete(id);
-  place(id, "x");
+  place(id, "X");
   if (check(playerX)) {
     setState("YOU LOSE");
     chessboard.clear();
@@ -82,7 +81,7 @@ function play(id) {
   }
   playerO.add(id);
   chessboard.delete(id);
-  place(id, "o");
+  place(id, "O");
   if (check(playerO)) {
     setState("YOU WIN");
     chessboard.clear();
